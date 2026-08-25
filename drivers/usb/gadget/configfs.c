@@ -406,7 +406,8 @@ static ssize_t gadget_dev_desc_UDC_store(struct config_item *item,
 				length += 1;
 				strcat(usb_mode, ",");
 			}
-			usb_mode[length-1] = 0;
+			if (length > 0)
+				usb_mode[length-1] = 0;
 			pr_info("usb: %s : usb_mode = %s\n", __func__, usb_mode);
 			store_usblog_notify(NOTIFY_USBMODE_EXTRA, (void *)usb_mode, NULL);
 		}
